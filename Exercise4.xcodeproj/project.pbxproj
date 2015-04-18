@@ -6,10 +6,21 @@
 	objectVersion = 46;
 	objects = {
 
+/* Begin PBXFileReference section */
+		6ABA888C1AE2EA9D0074387D /* DynProgFloyds_word_highlights.doc */ = {isa = PBXFileReference; lastKnownFileType = file; path = DynProgFloyds_word_highlights.doc; sourceTree = "<group>"; };
+		6ABA888D1AE2EA9D0074387D /* All Sources Shortest Path_ The Floyd-Warshall Algorithm _ Computer programming.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = "All Sources Shortest Path_ The Floyd-Warshall Algorithm _ Computer programming.pdf"; sourceTree = "<group>"; };
+		6ABA888E1AE2EA9D0074387D /* Ex4_Requirements_Floyd-Warshall.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = "Ex4_Requirements_Floyd-Warshall.pdf"; sourceTree = "<group>"; };
+		6ABA888F1AE2EA9D0074387D /* FloydWarshall.ppt */ = {isa = PBXFileReference; lastKnownFileType = file; path = FloydWarshall.ppt; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
 /* Begin PBXGroup section */
 		6ABA88851AE2EA8F0074387D = {
 			isa = PBXGroup;
 			children = (
+				6ABA888C1AE2EA9D0074387D /* DynProgFloyds_word_highlights.doc */,
+				6ABA888D1AE2EA9D0074387D /* All Sources Shortest Path_ The Floyd-Warshall Algorithm _ Computer programming.pdf */,
+				6ABA888E1AE2EA9D0074387D /* Ex4_Requirements_Floyd-Warshall.pdf */,
+				6ABA888F1AE2EA9D0074387D /* FloydWarshall.ppt */,
 			);
 			sourceTree = "<group>";
 		};
