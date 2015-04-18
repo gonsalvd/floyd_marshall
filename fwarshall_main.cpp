@@ -31,16 +31,19 @@ int main(int argc, char **argv)
 {
     string input;
     int num_nodes;
-    
     int from_node;
     int to_node;
     int cost;
+
     
     //Read in first line as N, E, Q (N-number of nodes, E-number of edges, Q-number of queries)
     getline(cin,input);
-    num_nodes = atoi(input.c_str());
-    num_edges = atoi(input.c_str());
-    num_queries = atoi(input.c_str());
+    stringstream ss(input);
+    ss>>num_nodes;
+    ss>>num_edges;
+    ss>>num_queries;
+//    cout<<"num edges"<<num_edges<<endl;
+//    cout<<"num nodes"<<num_nodes<<endl;
     FWar *Graph = new FWar(num_nodes, num_edges);
 
     while (getline(cin, input))
