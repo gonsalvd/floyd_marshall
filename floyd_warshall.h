@@ -10,18 +10,22 @@
 #define __Exercise4__floyd_warshall__
 
 #include <stdio.h>
+#include <iostream>
 
 class FWar
 {
+    
 public:
     FWar(int num_nodes, int num_edges);
     bool isPath(int from_node, int to_node);
     void printShortestPath();
     void printActualPath();
+    
 private:
     
     int num_nodes;
     int num_edges;
+    int **adj_matrix;
     
     
 };
