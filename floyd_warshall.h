@@ -11,4 +11,19 @@
 
 #include <stdio.h>
 
+class FWar
+{
+public:
+    FWar(int num_nodes, int num_edges);
+    bool isPath(int from_node, int to_node);
+    void printShortestPath();
+    void printActualPath();
+private:
+    
+    int num_nodes;
+    int num_edges;
+    
+    
+};
+
 #endif /* defined(__Exercise4__floyd_warshall__) */

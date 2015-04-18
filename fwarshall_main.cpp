@@ -20,47 +20,78 @@
 #include "floyd_warshall.h"
 using namespace std;
 
+int counter = 0;
+int num_edges;
+int num_queries;
+
+bool enter_edges();
+bool enter_queries();
+
 int main(int argc, char **argv)
 {
     string input;
-    int number;
-    string name;
+    int num_nodes;
     
-    //Read in first line as the size of table
-    std::getline(std::cin,input);
-    int table_size = atoi(input.c_str());
-     manager = Hash(table_size);
+    int from_node;
+    int to_node;
+    int cost;
     
-    
+    //Read in first line as N, E, Q (N-number of nodes, E-number of edges, Q-number of queries)
+    getline(cin,input);
+    num_nodes = atoi(input.c_str());
+    num_edges = atoi(input.c_str());
+    num_queries = atoi(input.c_str());
+    FWar *Graph = new FWar(num_nodes, num_edges);
+
     while (getline(cin, input))
     {
         stringstream ss(input);
-        ss>>number;
-        if (number == 0)
+
+        if (enter_edges())
         {
-            break;
+            ss>>from_node;
+            ss>>to_node;
+            ss>>cost;
+            cout<<from_node<<to_node<<cost<<endl;
+            
         }
-        //This commands inserting
-        else if (number == 1)
+        if (enter_queries())
         {
-            ss>>name;
-            manager.insert(name);
+            ss>>from_node;
+            ss>>to_node;
+            cout<<from_node<<to_node<<endl;
+            
+            if (Graph->isPath(from_node, to_node))
+            {
+                Graph->printShortestPath();
+                Graph->printActualPath();
+            }
+            else cout<<"NO PATH"<<endl;
         }
-        //This commands search
-        else if (number == 2)
-        {
-            ss>>name;
-            cout<<manager.search(name)<<endl;
-        }
-        //This is for taking in the intial size of the array
-        else if (number > 2)
-        {
-            table_size = number;
-        }
+        
+        ++counter;
         
     }
     return 0;
     
+}
+
+bool enter_edges()
+{
+    if (counter < num_edges)
+    {
+        return true;
+    }
+    return false;
+}
+
+bool enter_queries()
+{
+    if (counter >= num_edges)
+    {
+        return true;
+    }
+    return false;
 }
 
 
