@@ -23,9 +23,10 @@ using namespace std;
 int counter = 0;
 int num_edges;
 int num_queries;
+FWar *Graph;
 
-bool enter_edges();
-bool enter_queries();
+bool ableToEnterEdges();
+bool ableToQuery();
 
 int main(int argc, char **argv)
 {
@@ -41,21 +42,22 @@ int main(int argc, char **argv)
     ss>>num_nodes;
     ss>>num_edges;
     ss>>num_queries;
-    FWar *Graph = new FWar(num_nodes, num_edges);
+    Graph = new FWar(num_nodes, num_edges);
 
     while (getline(cin, input))
     {
         stringstream ss(input);
 
-        if (enter_edges())
+        if (ableToEnterEdges())
         {
             ss>>from_node;
             ss>>to_node;
             ss>>cost;
+            Graph->addEdgeCost(from_node, to_node, cost);
             cout<<from_node<<to_node<<cost<<endl;
             
         }
-        if (enter_queries())
+        if (ableToQuery())
         {
             ss>>from_node;
             ss>>to_node;
@@ -63,8 +65,8 @@ int main(int argc, char **argv)
             
             if (Graph->isPath(from_node, to_node))
             {
-                Graph->printShortestPath();
-                Graph->printActualPath();
+                Graph->printCost(from_node, to_node);
+                Graph->printShortestPath(from_node, to_node);
             }
             else cout<<"NO PATH"<<endl;
         }
@@ -76,16 +78,21 @@ int main(int argc, char **argv)
     
 }
 
-bool enter_edges()
+bool ableToEnterEdges()
 {
     if (counter < num_edges)
     {
         return true;
     }
+//    else if (counter == num_edges - 1)
+//    {
+//        cout<<"here"<<endl;
+//        Graph ->updateShortestPaths();
+//    }
     return false;
 }
 
-bool enter_queries()
+bool ableToQuery()
 {
     if (counter >= num_edges)
     {
