@@ -22,17 +22,27 @@ FWar::FWar(int num_nodes, int num_edges)
     {
         adj_matrix[a] = new int[height];
     }
+    path_matrix = new int*[width];
+    for (int a = 0; a < width; a++)
+    {
+        path_matrix[a] = new int[height];
+    }
 }
 
 void FWar::addEdgeCost(int from_node, int to_node, int cost)
 {
     adj_matrix[from_node][to_node] = cost;
+    path_matrix[from_node][to_node] = from_node;
+    cout<<"Added Edge from: "<<from_node<<" to: "<<to_node<<" with cost: "<<cost<<endl;
+    printAdjList();
+    printPathList();
     //cout<<"added cost:"<<adj_matrix[from_node][to_node]<<endl;
 
 }
 
 void FWar::printAdjList()
 {
+    cout<<"--------AdjListBeg----------"<<endl;
     for (int i = 0; i <= _NUM_NODES; i++)
     {
         //Search through all of our nodes to set i
@@ -42,11 +52,29 @@ void FWar::printAdjList()
         }
         cout<<endl;
     }
+    cout<<"--------AdjListEnd----------"<<endl;
+}
+
+void FWar::printPathList()
+{
+    cout<<"--------PathListBeg----------"<<endl;
+    for (int i = 0; i <= _NUM_NODES; i++)
+    {
+        //Search through all of our nodes to set i
+        for (int j = 0; j <= _NUM_NODES; j++)
+        {
+            cout<<path_matrix[i][j]<<" ";
+        }
+        cout<<endl;
+    }
+    cout<<"--------PathListEnd----------"<<endl;
 }
 
 void FWar::updateShortestPaths()
 {
-    //printAdjList();
+    cout<<"---Called UpdateShortestPaths---"<<endl;
+    printAdjList();
+    printPathList();
     //Search through each of our nodes. Each of these nodes will be interposed between any other two nodes
     for (int k = 1; k <= _NUM_NODES; k++)
     {
@@ -70,6 +98,7 @@ void FWar::updateShortestPaths()
                         //Update our new shortest path distance
                         //cout<<"here2"<<endl;
                         adj_matrix[i][j] = adj_matrix[i][k] + adj_matrix[k][j];
+                        path_matrix[i][j] = k;
                         //cout<<"updated value for i: "<<i<<" j: "<<j<<" k: "<<k<<" is: "<<adj_matrix[i][j]<<endl;
                     }
                 }

@@ -30,10 +30,12 @@ private:
     int _NUM_NODES;
     int _NUM_EDGES;
     int **adj_matrix;
+    int **path_matrix;
     
     void findShortestPath(int from_node, int to_node);
     int Cost(int from_node, int to_node);
     void printAdjList();
+    void printPathList();
     
     
 };
