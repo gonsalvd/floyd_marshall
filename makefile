@@ -11,4 +11,4 @@ floyd_warshall.o: floyd_warshall.cpp floyd_warshall.h
 
 clean:
 	rm -rf *.o
-	rm -rf Floy-Warshall
+	rm -rf Floyd-Warshall
