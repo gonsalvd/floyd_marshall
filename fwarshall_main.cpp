@@ -23,7 +23,7 @@ using namespace std;
 int counter = 0;
 int num_edges;
 int num_queries;
-FWar *Graph;
+
 
 bool ableToEnterEdges();
 bool ableToQuery();
@@ -42,7 +42,7 @@ int main(int argc, char **argv)
     ss>>num_nodes;
     ss>>num_edges;
     ss>>num_queries;
-    Graph = new FWar(num_nodes, num_edges);
+    FWar *Graph = new FWar(num_nodes, num_edges);
 
     while (getline(cin, input))
     {
@@ -54,14 +54,14 @@ int main(int argc, char **argv)
             ss>>to_node;
             ss>>cost;
             Graph->addEdgeCost(from_node, to_node, cost);
-            cout<<from_node<<to_node<<cost<<endl;
+            //cout<<from_node<<to_node<<cost<<endl;
             
         }
         if (ableToQuery())
         {
             ss>>from_node;
             ss>>to_node;
-            cout<<from_node<<to_node<<endl;
+            //cout<<from_node<<to_node<<endl;
             
             if (Graph->isPath(from_node, to_node))
             {

@@ -33,9 +33,9 @@ void FWar::addEdgeCost(int from_node, int to_node, int cost)
 {
     adj_matrix[from_node][to_node] = cost;
     path_matrix[from_node][to_node] = from_node;
-    cout<<"Added Edge from: "<<from_node<<" to: "<<to_node<<" with cost: "<<cost<<endl;
-    printAdjList();
-    printPathList();
+    //cout<<"Added Edge from: "<<from_node<<" to: "<<to_node<<" with cost: "<<cost<<endl;
+    //printAdjList();
+    //printPathList();
     //cout<<"added cost:"<<adj_matrix[from_node][to_node]<<endl;
 
 }
@@ -72,9 +72,9 @@ void FWar::printPathList()
 
 void FWar::updateShortestPaths()
 {
-    cout<<"---Called UpdateShortestPaths---"<<endl;
-    printAdjList();
-    printPathList();
+//    cout<<"---Called UpdateShortestPaths---"<<endl;
+//    printAdjList();
+//    printPathList();
     //Search through each of our nodes. Each of these nodes will be interposed between any other two nodes
     for (int k = 1; k <= _NUM_NODES; k++)
     {
@@ -98,7 +98,7 @@ void FWar::updateShortestPaths()
                         //Update our new shortest path distance
                         //cout<<"here2"<<endl;
                         adj_matrix[i][j] = adj_matrix[i][k] + adj_matrix[k][j];
-                        path_matrix[i][j] = k;
+                        path_matrix[i][j] = path_matrix[k][j];
                         //cout<<"updated value for i: "<<i<<" j: "<<j<<" k: "<<k<<" is: "<<adj_matrix[i][j]<<endl;
                     }
                 }
@@ -121,15 +121,47 @@ bool FWar::isPath(int from_node, int to_node)
 
 void FWar::findShortestPath(int from_node, int to_node)
 {
+    int node = to_node;
     if (isPath(from_node, to_node))
     {
-        
+        pathR(from_node, to_node);
+        print_matrix.push_back(to_node);
+        //cout<<"Node End: "<<to_node<<endl;
+        //cout<<"Node Start: "<<from_node<<endl;
+    }
+    if (from_node == to_node)
+    {
+        print_matrix.push_back(to_node);
+    }
+}
+
+void FWar::pathR(int from_node, int to_node)
+{
+    if (from_node == to_node)
+    {
+        return;
+    }
+    else
+    {
+        pathR(from_node, path_matrix[from_node][to_node]);
+        print_matrix.push_back(path_matrix[from_node][to_node]);
+        //cout<<"Node: "<<path_matrix[from_node][to_node]<<endl;
     }
 }
 
 void FWar::printShortestPath(int from_node, int to_node)
 {
-    
+    findShortestPath(from_node, to_node);
+    for (int a = 0; a < print_matrix.size(); a++)
+    {
+        cout<<print_matrix.at(a);
+        if(a<print_matrix.size()-1)
+        {
+            cout<<"-";
+        }
+    }
+    cout<<endl;
+    print_matrix.clear();
 }
 
 int FWar::Cost(int from_node, int to_node)
@@ -141,7 +173,7 @@ void FWar::printCost(int from_node, int to_node)
 {
     updateShortestPaths();
     int cost = Cost(from_node, to_node);
-    cout<<"cost = "<<cost<<endl;
+    cout<<"cost="<<cost<<endl;
 }
 
 

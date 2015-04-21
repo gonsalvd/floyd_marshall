@@ -11,6 +11,8 @@
 
 #include <stdio.h>
 #include <iostream>
+#include <vector>
+using namespace std;
 
 class FWar
 {
@@ -31,11 +33,13 @@ private:
     int _NUM_EDGES;
     int **adj_matrix;
     int **path_matrix;
+    vector<int> print_matrix;
     
     void findShortestPath(int from_node, int to_node);
     int Cost(int from_node, int to_node);
     void printAdjList();
     void printPathList();
+    void pathR(int from_node, int to_node);
     
     
 };
