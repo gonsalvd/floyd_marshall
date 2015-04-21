@@ -70,9 +70,10 @@ void FWar::updateShortestPaths()
 
 bool FWar::isPath(int from_node, int to_node)
 {
+    //Make sure we have the shortest paths updated
     updateShortestPaths();
+    //Make sure there is a distance value or that the from and to nodes are the same (self loops)
     int length_of_zero = 0;
-    //cout<<"adj value:"<<adj_matrix[from_node][to_node]<<endl;
     if (adj_matrix[from_node][to_node] != length_of_zero || (from_node == to_node))
     {
         return true;
@@ -137,9 +138,9 @@ int FWar::Cost(int from_node, int to_node)
 
 void FWar::printCost(int from_node, int to_node)
 {
+    //Make sure everything updated
     updateShortestPaths();
-    int cost = Cost(from_node, to_node);
-    cout<<"cost="<<cost<<endl;
+    cout<<"cost="<<Cost(from_node, to_node)<<endl;
 }
 
 void FWar::printAdjList()
@@ -171,11 +172,3 @@ void FWar::printPathList()
     }
     cout<<"--------PathListEnd----------"<<endl;
 }
-
-
-
-
-
-
-
-//void findShort
